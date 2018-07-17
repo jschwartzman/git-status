@@ -58,20 +58,20 @@ while [ ${index} -lt ${numProg} ] ; do
 
     if [ $COUNT1 -eq 1 ]
     then
-        echo -e "${escGreen}${prog} $strNoCommit${escReset}"
+        echo -e "${escGreen}${prog[${index}]} $strNoCommit${escReset}"
     else
-        echo -e "${escRed}${prog} $strCommit${escReset}"
+        echo -e "${escRed}${prog[${index}]} $strCommit${escReset}"
     fi
 
     if [ $COUNT2 -ne 0 ]
     then
-        echo -e "${escRed}${prog} $strUntracked${escReset}"
+        echo -e "${escRed}${prog[${index}]} $strUntracked${escReset}"
     else
-        echo -e "${escGreen}${prog} ${strNoUntracked}${escReset}"
+        echo -e "${escGreen}${prog[${index}]} ${strNoUntracked}${escReset}"
     fi
 
     echo
-    let index=index+1
+    let index+=1
 done
 
 ##############################################################################
