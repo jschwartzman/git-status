@@ -69,11 +69,9 @@ while [ ${index} -lt ${numProg} ] ; do
     else
         echo -e "${escGreen}${prog} ${strNoUntracked}${escReset}"
     fi
-echo
-   
+
+    echo
     let index=index+1
 done
-
-exit 0
 
 ##############################################################################
