@@ -12,7 +12,7 @@
 
 set -o nounset			# use strict (no unset variables)
 
-escRed='\e[0;31m'       # define a few color escape sequences
+escRed='\e[1;31m'       # define a few color escape sequences
 escGreen='\e[0;32m'
 escReset='\e[0m'
 
@@ -25,7 +25,6 @@ strNoCommit="has no files to commit."
 strCommit="has 1 or more files that need to be committed."
 strNoUntracked="has no untracked files."
 strUntracked="has 1 or more untracked files."
-
 
 dirPrefix="/home/js/Development/UnixDomainSocket/"
 dirSuffix="/src/"
