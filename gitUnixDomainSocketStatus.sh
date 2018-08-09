@@ -7,7 +7,7 @@
 #                   track untracked files (UnixDomainSocket project)
 # author: 			John Schwartzman, Forte Systems, Inc.
 #
-# last revision:	07/16/2018
+# last revision:	08/08/2018
 ##############################################################################
 
 set -o nounset			# use strict (no unset variables)
@@ -17,8 +17,8 @@ escGreen='\e[0;32m'
 escReset='\e[0m'
 
 # define cmd1 and cmd2
-cmd1="git status --untracked-files=no | grep -c \"nothing to commit\""
-cmd2="git status --untracked-files=normal | grep -c \"Untracked files\""
+cmd1="git status --untracked-files=no . | grep -c \"nothing to commit\""
+cmd2="git status --untracked-files=normal . | grep -c \"Untracked files\""
 
 # define the output strings
 strNoCommit="has no files to commit."
@@ -34,9 +34,9 @@ declare -a prog[0]="utility" prog[1]="transport" prog[2]="serverTest" \
            prog[3]="clientTest" prog[4]="simpleClientTest" \
            prog[5]="utilityTest" prog[6]=""
            
-numProg=6
+numProgects=6
 
-# the nProg directories consist of the dirPrefix + prog[index] + dirSuffix
+# the numProg directories consist of the dirPrefix + prog[index] + dirSuffix
 echo
 
 ##############################################################################
@@ -46,30 +46,30 @@ index=0
 # for each project in turn,
 #   cd to the project directory
 #   evaluate cmd1 and cmd2 and save the count of strings found in
-#   COUNT1 and COUNT2
-#   print the results to the user based on the contents of COUNT1 and COUNT2
+#   count1 and count2
+#   print the results to the user based on the contents of count1 and count2
 
-while [ ${index} -lt ${numProg} ] ; do
+while [ ${index} -lt ${numProgects} ] ; do
     cd "${dirPrefix}${prog[${index}]}${dirSuffix}"
     
-    COUNT1=`eval ${cmd1}`
-    COUNT2=`eval ${cmd2}`
+    count1=`eval ${cmd1}`
+    count2=`eval ${cmd2}`
 
-    if [ $COUNT1 -eq 1 ]
+    if [ $count1 -eq 1 ]
     then
-        echo -e "${escGreen}${prog[${index}]} $strNoCommit${escReset}"
+        echo -e "${escGreen}${prog[${index}]} $strNoCommit"
     else
-        echo -e "${escRed}${prog[${index}]} $strCommit${escReset}"
+        echo -e "${escRed}${prog[${index}]} $strCommit"
     fi
 
-    if [ $COUNT2 -ne 0 ]
+    if [ $count2 -ne 0 ]
     then
         echo -e "${escRed}${prog[${index}]} $strUntracked${escReset}"
     else
         echo -e "${escGreen}${prog[${index}]} ${strNoUntracked}${escReset}"
     fi
 
-    echo
+    echo -e ${escReset}
     let index+=1
 done
 
