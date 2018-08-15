@@ -7,7 +7,7 @@
 #                   track untracked files (UnixDomainSocket project)
 # author: 			John Schwartzman, Forte Systems, Inc.
 #
-# last revision:	08/08/2018
+# last revision:	08/14/2018
 ##############################################################################
 
 set -o nounset			# use strict (no unset variables)
@@ -64,9 +64,9 @@ while [ ${index} -lt ${numProgects} ] ; do
 
     if [ $count2 -ne 0 ]
     then
-        echo -e "${escRed}${prog[${index}]} $strUntracked${escReset}"
+        echo -e "${escRed}${prog[${index}]} $strUntracked"
     else
-        echo -e "${escGreen}${prog[${index}]} ${strNoUntracked}${escReset}"
+        echo -e "${escGreen}${prog[${index}]} ${strNoUntracked}"
     fi
 
     echo -e ${escReset}
