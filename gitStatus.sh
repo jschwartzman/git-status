@@ -7,7 +7,7 @@
 #                   track untracked files in an array of git repositories
 # author: 			John Schwartzman, Forte Systems, Inc.
 #
-# last revision:	09/22/2018
+# last revision:	09/23/2018
 ##############################################################################
 
 set -o nounset			# use strict (no unset variables)
@@ -39,7 +39,7 @@ proj[5]="utilityTest|$HOME/Development/UnixDomainSocket/utilityTest/src"
 numProjects=${#proj[@]} # keep track of the number of projects in the array
 
 echo
-echo $(date)
+echo $(date)    # timestamp the output
 
 ##############################################################################
 
@@ -52,9 +52,9 @@ echo $(date)
 for (( i=0; $i < $numProjects; i++ )); do
 
     project="${proj[$i]%%|*}"   # derive the project name from proj[i]
-    dir="${proj[$i]#*|}"        # decive the directory name from proj[i]
+    dir="${proj[$i]#*|}"        # derive the directory name from proj[i]
 
-    cd "${dir}"                 # go into the directory
+    cd "${dir}"                 # go into the repository directory
     
     count1=$(eval ${cmd1})      # execute cmd1 and save the result in count1
     count2=$(eval ${cmd2})      # execute cmd2 and save the result in count2
