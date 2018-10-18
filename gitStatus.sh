@@ -7,7 +7,7 @@
 #                   track untracked files in an array of git repositories
 # author: 			John Schwartzman, Forte Systems, Inc.
 #
-# last revision:	09/23/2018
+# last revision:	10/10/2018
 ##############################################################################
 
 set -o nounset			# use strict (no unset variables)
@@ -27,7 +27,7 @@ strCommit="file(s) that need to be committed."
 strNoUntracked="has no untracked files."
 strUntracked="has one or more untracked files."
 
-# declare arrays of the project names and their associated directories
+# declare an array of the project names and their associated directories
 declare -a proj
 proj[0]="utility|$HOME/Development/UnixDomainSocket/utility/src"
 proj[1]="transport|$HOME/Development/UnixDomainSocket/transport/src"
@@ -35,6 +35,12 @@ proj[2]="serverTest|$HOME/Development/UnixDomainSocket/serverTest/src"
 proj[3]="clientTest|$HOME/Development/UnixDomainSocket/clientTest/src" 
 proj[4]="simpleClientTest|$HOME/Development/UnixDomainSocket/simpleClientTest/src"
 proj[5]="utilityTest|$HOME/Development/UnixDomainSocket/utilityTest/src"
+proj[6]="command-history|$HOME/Development/command-history"
+proj[7]="git-status|$HOME/Development/shellUtilities/git-status"
+proj[8]="findgrep|$HOME/Development/shellUtilities/findgrep"
+proj[9]="findlinks|$HOME/Development/shellUtilities/findlinks"
+proj[10]="removelinks|$HOME/Development/shellUtilities/removelinks"
+proj[11]="removefiles|$HOME/Development/shellUtilities/removefiles"
 
 numProjects=${#proj[@]} # keep track of the number of projects in the array
 
@@ -54,7 +60,7 @@ for (( i=0; $i < $numProjects; i++ )); do
     project="${proj[$i]%%|*}"   # derive the project name from proj[i]
     dir="${proj[$i]#*|}"        # derive the directory name from proj[i]
 
-    cd "${dir}"                 # go into the repository directory
+    cd "${dir}"                 # cd into the repository directory
     
     count1=$(eval ${cmd1})      # execute cmd1 and save the result in count1
     count2=$(eval ${cmd2})      # execute cmd2 and save the result in count2
